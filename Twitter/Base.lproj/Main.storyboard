@@ -17,7 +17,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Uk-J2-6Pv">
-                                <rect key="frame" x="240" y="285" width="121" height="30"/>
+                                <rect key="frame" x="195" y="278" width="211" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <state key="normal" title="Login with Twitter">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,13 +29,50 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="2Uk-J2-6Pv" secondAttribute="centerX" id="2XH-oR-vXB"/>
+                            <constraint firstAttribute="centerX" secondItem="2Uk-J2-6Pv" secondAttribute="centerX" id="OKj-sg-Ol1"/>
                             <constraint firstAttribute="centerY" secondItem="2Uk-J2-6Pv" secondAttribute="centerY" id="VYY-iK-zgD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="bAK-it-6r4" kind="modal" identifier="loginSegue" id="AwX-7S-3rV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Tweets View Controller-->
+        <scene sceneID="2e5-kM-TdK">
+            <objects>
+                <viewController storyboardIdentifier="TweetsViewController" id="bAK-it-6r4" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k9k-Ef-S3D"/>
+                        <viewControllerLayoutGuide type="bottom" id="4rC-zj-MZs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I4Z-iL-tYa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nek-bC-VQa">
+                                <rect key="frame" x="184" y="278" width="233" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <state key="normal" title="Logout from Twitter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLogout:" destination="bAK-it-6r4" eventType="touchUpInside" id="XR5-AG-aMg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="nek-bC-VQa" secondAttribute="centerX" id="M3h-uP-RnR"/>
+                            <constraint firstAttribute="centerY" secondItem="nek-bC-VQa" secondAttribute="centerY" id="y1b-PI-kzf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lDD-m9-7z7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1136" y="337"/>
         </scene>
     </scenes>
 </document>
