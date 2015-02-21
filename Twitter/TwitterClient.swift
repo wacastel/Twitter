@@ -54,6 +54,14 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         }
     }
     
+    func updateStatus() {
+        POST("1.1/statuses/update.json", parameters: nil, success: { (operation:AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println("sent tweet successfully")
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            println("Error sending tweet")
+        }
+    }
+    
     func openURL(url: NSURL) {
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
             println("Got the access token!")

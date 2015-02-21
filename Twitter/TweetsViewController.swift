@@ -27,6 +27,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.title = "Home"
         
+        self.navigationItem.titleView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+        
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
             
@@ -35,18 +37,18 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             }*/
             
             // home timeline data test
-            var tweet = self.tweets![0] as Tweet
-            println("user's real name: \(tweet.user?.name)")
-            println("user's screen name: \(tweet.user?.screenname)")
+            //var tweet = self.tweets![0] as Tweet
+            //println("user's real name: \(tweet.user?.name)")
+            //println("user's screen name: \(tweet.user?.screenname)")
             //println("user's profile picture URL: \(tweet.user?.profileImageUrl)")
             //println("text: \(tweet.text)")
             
-            var formatter = NSDateFormatter()
+            //var formatter = NSDateFormatter()
             //var testText = formatter.stringFromDate(tweet.createdAt!)
-            var createdAtText = tweet.createdAtString
+            //var createdAtText = tweet.createdAtString
             
-            println("createdAt text: \(createdAtText)")
-            println("createdAt NSDate: \(tweet.createdAt)")
+            //println("createdAt text: \(createdAtText)")
+            //println("createdAt NSDate: \(tweet.createdAt)")
             
             // reload table view here
             self.tableView.reloadData()
@@ -78,12 +80,20 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let details = TweetDetailViewController(nibName: "TweetDetailViewController", bundle: nil)
+        let tweet = self.tweets![indexPath.row] as Tweet
+        details.tweet = tweet
+        self.navigationController?.pushViewController(details, animated: false)
+    }
+    
     func logoutUser() {
         User.currentUser?.logout()
     }
     
     func composeTweet() {
-        println("go to compose view!")
+        let vc = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     /*

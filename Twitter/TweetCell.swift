@@ -21,6 +21,8 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.tweetTextLabel.preferredMaxLayoutWidth = self.tweetTextLabel.frame.size.width
+        //self.userNameLabel.preferredMaxLayoutWidth = self.userNameLabel.frame.size.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -31,12 +33,20 @@ class TweetCell: UITableViewCell {
     
     func setTweet(inputTweet: Tweet) {
         self.tweet = inputTweet
-        self.profileImageView.setImageWithURL(NSURL(string: self.tweet.user!.profileImageUrl!))
+        if self.tweet.user?.profileImageUrl != nil {
+            self.profileImageView.setImageWithURL(NSURL(string: self.tweet.user!.profileImageUrl!))
+        }
         self.userNameLabel.text = self.tweet.user!.name
         self.screenNameLabel.text = self.tweet.user!.screenname
         var formatter = NSDateFormatter()
         self.timeStampLabel.text = formatter.stringFromDate(self.tweet.createdAt!)
         self.tweetTextLabel.text = self.tweet.text
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.tweetTextLabel.preferredMaxLayoutWidth = self.tweetTextLabel.frame.size.width
+        //self.userNameLabel.preferredMaxLayoutWidth = self.userNameLabel.frame.size.width
     }
     
 }
