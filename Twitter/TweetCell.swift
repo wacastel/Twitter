@@ -33,8 +33,11 @@ class TweetCell: UITableViewCell {
     
     func setTweet(inputTweet: Tweet) {
         self.tweet = inputTweet
-        if self.tweet.user?.profileImageUrl != nil {
+        /*if self.tweet.user?.profileImageUrl != nil {
             self.profileImageView.setImageWithURL(NSURL(string: self.tweet.user!.profileImageUrl!))
+        }*/
+        if let profileImage = self.tweet.user?.profileImageUrl {
+            self.profileImageView.setImageWithURL(NSURL(string: profileImage))
         }
         self.userNameLabel.text = self.tweet.user!.name
         self.screenNameLabel.text = self.tweet.user!.screenname

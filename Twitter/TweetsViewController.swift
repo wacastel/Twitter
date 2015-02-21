@@ -27,8 +27,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.title = "Home"
         
-        self.navigationItem.titleView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
             
@@ -52,6 +50,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
             // reload table view here
             self.tableView.reloadData()
+            
+            self.navigationItem.titleView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth
             
             // Can do "tweet.favorite()" here to do a POST (as opposed to a GET)
             // Add a favorite() function in TwitterClient.swift to implement the 'favorite' API call, etc
@@ -93,6 +93,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func composeTweet() {
         let vc = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
+        vc.user = User.currentUser
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
