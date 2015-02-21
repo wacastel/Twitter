@@ -25,7 +25,10 @@ class ViewController: UIViewController {
         TwitterClient.sharedInstance.loginWithCompletion() { (user: User?, error: NSError?) in
             if user != nil {
                 // perform segue
-                self.performSegueWithIdentifier("loginSegue", sender: self)
+                //self.performSegueWithIdentifier("loginSegue", sender: self)
+                let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
+                let nvc = UINavigationController(rootViewController: vc)
+                self.presentViewController(nvc, animated: true, completion: nil)
             } else {
                 // handle login error
             }
