@@ -6,6 +6,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetDetailViewController" customModule="Twitter" customModuleProvider="target">
             <connections>
+                <outlet property="favoriteButton" destination="GFG-St-46Y" id="K1o-vf-g1d"/>
+                <outlet property="favoriteCountLabel" destination="Lkq-YT-cp0" id="u3L-jJ-omC"/>
+                <outlet property="nameLabel" destination="8Ph-NG-Ntw" id="eXe-Zs-DhS"/>
+                <outlet property="profileImageView" destination="u0R-uN-M2u" id="2g9-PG-34p"/>
+                <outlet property="replyButton" destination="nyh-V4-xdW" id="Z8f-VO-9uD"/>
+                <outlet property="retweetButton" destination="iJK-zX-5Fp" id="X7v-F0-Vwa"/>
+                <outlet property="retweetCountLabel" destination="DFP-UF-kSO" id="j9D-de-ewP"/>
+                <outlet property="screenNameLabel" destination="xct-BO-y8w" id="Uhb-AQ-UX2"/>
+                <outlet property="timestampLabel" destination="7nu-TP-91o" id="q3j-YU-D3v"/>
+                <outlet property="tweetTextLabel" destination="plx-jw-1eS" id="7zM-6h-Jtj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

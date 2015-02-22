@@ -10,16 +10,34 @@ import UIKit
 
 class TweetDetailViewController: UIViewController {
     
-    var tweet: Tweet?
-
+    var tweet: Tweet!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var retweetCountLabel: UILabel!
+    @IBOutlet weak var favoriteCountLabel: UILabel!
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reply", style: UIBarButtonItemStyle.Plain, target: self, action: "reply")
         self.title = "Tweet"
-        println("tweet details - real name: \(tweet!.user!.name)")
-        println("tweet details - screen name: \(tweet!.user!.screenname)")
+        println("tweet details - real name: \(self.tweet.user?.name)")
+        println("tweet details - screen name: \(self.tweet.user?.screenname)")
+        if let profileImage = self.tweet.user?.profileImageUrl {
+            self.profileImageView.setImageWithURL(NSURL(string: profileImage))
+        }
+        self.nameLabel.text = self.tweet.user?.name
+        self.screenNameLabel.text = "@" + self.tweet.user!.screenname!
+        self.tweetTextLabel.text = self.tweet.text
+        self.retweetCountLabel.text = String(self.tweet.retweetCount!)
+        self.favoriteCountLabel.text = String(self.tweet.favoriteCount!)
     }
 
     override func didReceiveMemoryWarning() {
