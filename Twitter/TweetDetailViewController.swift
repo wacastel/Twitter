@@ -11,6 +11,8 @@ import UIKit
 class TweetDetailViewController: UIViewController {
     
     var tweet: Tweet!
+    var favorited: Bool?
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
@@ -28,16 +30,24 @@ class TweetDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reply", style: UIBarButtonItemStyle.Plain, target: self, action: "reply")
         self.title = "Tweet"
-        println("tweet details - real name: \(self.tweet.user?.name)")
-        println("tweet details - screen name: \(self.tweet.user?.screenname)")
+        println("tweet details - real name: \(self.tweet!.user!.name!)")
+        println("tweet details - screen name: \(self.tweet!.user!.screenname!)")
         if let profileImage = self.tweet.user?.profileImageUrl {
             self.profileImageView.setImageWithURL(NSURL(string: profileImage))
         }
-        self.nameLabel.text = self.tweet.user?.name
-        self.screenNameLabel.text = "@" + self.tweet.user!.screenname!
-        self.tweetTextLabel.text = self.tweet.text
-        self.retweetCountLabel.text = String(self.tweet.retweetCount!)
-        self.favoriteCountLabel.text = String(self.tweet.favoriteCount!)
+        self.nameLabel.text = self.tweet!.user!.name!
+        self.screenNameLabel.text = "@" + self.tweet!.user!.screenname!
+        self.tweetTextLabel.text = self.tweet!.text!
+        self.retweetCountLabel.text = String(self.tweet!.retweetCount!)
+        self.favoriteCountLabel.text = String(self.tweet!.favoriteCount!)
+        
+        if self.tweet.favorited == 0 {
+            self.favoriteButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            self.favorited = false
+        } else {
+            self.favoriteButton.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
+            self.favorited = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,18 +55,46 @@ class TweetDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func reply() {
-        println("reply to the tweet!")
-    }
-    
     func retweet() {
         println("retweet the tweet!")
+        var tweetId = tweet.tweetId!
+        println("TweetDetailViewController - tweet id: \(tweetId)")
+        TwitterClient.sharedInstance.retweet(tweetId)
+    }
+    
+    func reply() {
+        println("reply to the tweet!")
+        let vc = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
+        vc.user = User.currentUser
+        vc.tweet = self.tweet
+        vc.replyMode = true
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     func favorite() {
-        println("favorite the tweet!")
+        if self.favorited == true {
+            self.favorited == false
+            self.favoriteButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            println("unfavorited the tweet!")
+        } else {
+            self.favorited == true
+            self.favoriteButton.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
+            println("favorited the tweet!")
+        }
     }
 
+    @IBAction func onRetweet(sender: AnyObject) {
+        self.retweet()
+    }
+    
+    @IBAction func onReply(sender: AnyObject) {
+        self.reply()
+    }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        self.favorite()
+    }
+    
     /*
     // MARK: - Navigation
 

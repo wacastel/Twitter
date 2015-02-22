@@ -17,44 +17,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.registerNib(UINib(nibName: "TweetCell", bundle: nil), forCellReuseIdentifier: "TweetCell")
-        
-        // Do any additional setup after loading the view.
-        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: UIBarButtonItemStyle.Plain, target: self, action: "logoutUser")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: UIBarButtonItemStyle.Plain, target: self, action: "composeTweet")
-        
         self.title = "Home"
-        
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
-            
-            /*for tweet in tweets! {
-            println("text: \(tweet.text), created: \(tweet.createdAt)")
-            }*/
-            
-            // home timeline data test
-            //var tweet = self.tweets![0] as Tweet
-            //println("user's real name: \(tweet.user?.name)")
-            //println("user's screen name: \(tweet.user?.screenname)")
-            //println("user's profile picture URL: \(tweet.user?.profileImageUrl)")
-            //println("text: \(tweet.text)")
-            
-            //var formatter = NSDateFormatter()
-            //var testText = formatter.stringFromDate(tweet.createdAt!)
-            //var createdAtText = tweet.createdAtString
-            
-            //println("createdAt text: \(createdAtText)")
-            //println("createdAt NSDate: \(tweet.createdAt)")
-            
-            // reload table view here
             self.tableView.reloadData()
-            
             self.navigationItem.titleView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-            
-            // Can do "tweet.favorite()" here to do a POST (as opposed to a GET)
-            // Add a favorite() function in TwitterClient.swift to implement the 'favorite' API call, etc
         })
         
     }
@@ -94,6 +64,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func composeTweet() {
         let vc = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
         vc.user = User.currentUser
+        vc.replyMode = false
         self.navigationController?.pushViewController(vc, animated: false)
     }
     

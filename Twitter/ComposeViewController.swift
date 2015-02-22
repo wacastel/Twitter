@@ -11,6 +11,8 @@ import UIKit
 class ComposeViewController: UIViewController {
     
     var user: User?
+    var tweet: Tweet?
+    var replyMode: Bool?
     @IBOutlet weak var composeTextView: UITextView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var realNameLabel: UILabel!
@@ -23,11 +25,19 @@ class ComposeViewController: UIViewController {
         if let profileImage = self.user?.profileImageUrl {
             self.profileImageView.setImageWithURL(NSURL(string: profileImage))
         }
-        println("compose view - real name: \(self.user!.name)")
-        println("compose view - screen name: \(self.user!.screenname)")
-        self.realNameLabel.text = self.user!.name
-        self.screenNameLabel.text = self.user!.screenname
+        println("compose view - real name: \(self.user!.name!)")
+        println("compose view - screen name: \(self.user!.screenname!)")
+        self.realNameLabel.text = self.user!.name!
+        self.screenNameLabel.text = self.user!.screenname!
         composeTextView.becomeFirstResponder()
+        
+        if replyMode == true {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reply", style: UIBarButtonItemStyle.Plain, target: self, action: "sendTweet")
+            println("add the user's screen name to the composeTextView text!")
+            composeTextView.text = "@\(self.tweet!.user!.screenname!) "
+        } else {
+            println("reply mode false!")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +50,16 @@ class ComposeViewController: UIViewController {
         println(text)
         var params = ["status": text]
         TwitterClient.sharedInstance.updateStatus(params)
+        println("send tweet & return to tweet detail view!")
+        if replyMode == true {
+            let vc = TweetDetailViewController(nibName: "TweetDetailViewController", bundle: nil)
+            vc.tweet = self.tweet!
+            self.navigationController?.pushViewController(vc, animated: false)
+        } else {
+            let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
+            self.navigationController?.pushViewController(vc, animated: false)
+        }
+        
     }
     
 
