@@ -22,7 +22,6 @@ class TweetCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.tweetTextLabel.preferredMaxLayoutWidth = self.tweetTextLabel.frame.size.width
-        //self.userNameLabel.preferredMaxLayoutWidth = self.userNameLabel.frame.size.width
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -33,23 +32,31 @@ class TweetCell: UITableViewCell {
     
     func setTweet(inputTweet: Tweet) {
         self.tweet = inputTweet
-        /*if self.tweet.user?.profileImageUrl != nil {
-            self.profileImageView.setImageWithURL(NSURL(string: self.tweet.user!.profileImageUrl!))
-        }*/
         if let profileImage = self.tweet.user?.profileImageUrl {
             self.profileImageView.setImageWithURL(NSURL(string: profileImage))
         }
         self.userNameLabel.text = self.tweet.user!.name
         self.screenNameLabel.text = self.tweet.user!.screenname
         var formatter = NSDateFormatter()
-        self.timeStampLabel.text = formatter.stringFromDate(self.tweet.createdAt!)
+        var timeInterval = -(self.tweet.createdAt!.timeIntervalSinceNow)
+        println("timestamp: \(self.tweet.createdAt!)")
+        println("time interval since now: \(timeInterval)")
+        if timeInterval < (24 * 60 * 60) {
+            var hours = Int(round((timeInterval) / 3600))
+            if hours < 1 {
+                hours = 1
+            }
+            self.timeStampLabel.text = String(hours) + "h"
+        } else {
+            formatter.dateFormat = "MM/dd/yy"
+            self.timeStampLabel.text = formatter.stringFromDate(self.tweet.createdAt!)
+        }
         self.tweetTextLabel.text = self.tweet.text
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.tweetTextLabel.preferredMaxLayoutWidth = self.tweetTextLabel.frame.size.width
-        //self.userNameLabel.preferredMaxLayoutWidth = self.userNameLabel.frame.size.width
     }
     
 }

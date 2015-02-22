@@ -43,6 +43,10 @@ class TweetDetailViewController: UIViewController {
         self.retweetCountLabel.text = String(self.tweet!.retweetCount!)
         self.favoriteCountLabel.text = String(self.tweet!.favoriteCount!)
         
+        var formatter = NSDateFormatter()
+        formatter.dateFormat = "MM/dd/yy, HH:mm a"
+        self.timestampLabel.text = formatter.stringFromDate(self.tweet.createdAt!)
+        
         if self.tweet.favorited == 0 {
             self.favoriteButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
             self.favorited = false
