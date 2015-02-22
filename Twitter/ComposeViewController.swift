@@ -54,10 +54,10 @@ class ComposeViewController: UIViewController {
         if replyMode == true {
             let vc = TweetDetailViewController(nibName: "TweetDetailViewController", bundle: nil)
             vc.tweet = self.tweet!
-            self.navigationController?.pushViewController(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
             let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
-            self.navigationController?.pushViewController(vc, animated: false)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }

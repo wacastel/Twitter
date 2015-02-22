@@ -96,7 +96,7 @@ class TweetDetailViewController: UIViewController {
         vc.user = User.currentUser
         vc.tweet = self.tweet
         vc.replyMode = true
-        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func favorite() {

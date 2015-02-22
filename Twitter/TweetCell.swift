@@ -22,6 +22,7 @@ class TweetCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.tweetTextLabel.preferredMaxLayoutWidth = self.tweetTextLabel.frame.size.width
+        self.selectionStyle = UITableViewCellSelectionStyle.None
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

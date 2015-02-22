@@ -19,6 +19,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.registerNib(UINib(nibName: "TweetCell", bundle: nil), forCellReuseIdentifier: "TweetCell")
+        
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 90
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: UIBarButtonItemStyle.Plain, target: self, action: "logoutUser")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: UIBarButtonItemStyle.Plain, target: self, action: "composeTweet")
         self.title = "Home"
@@ -69,7 +73,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let details = TweetDetailViewController(nibName: "TweetDetailViewController", bundle: nil)
         let tweet = self.tweets![indexPath.row] as Tweet
         details.tweet = tweet
-        self.navigationController?.pushViewController(details, animated: false)
+        self.navigationController?.pushViewController(details, animated: true)
     }
     
     func logoutUser() {
@@ -80,7 +84,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let vc = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
         vc.user = User.currentUser
         vc.replyMode = false
-        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /*
