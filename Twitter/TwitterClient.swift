@@ -63,11 +63,32 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
     
     func retweet(tweetId: String) {
+        var params: NSDictionary = ["id": tweetId]
         println("TwitterClient - tweet id: \(tweetId)")
-        POST("1.1/statuses/retweet/:\(tweetId).json", parameters: nil, success: { (operation:AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            println("Sent tweet successfully! Response: \(response)")
+        POST("1.1/statuses/retweet/:\(tweetId).json", parameters: params, success: { (operation:AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println("Retweeted tweet successfully! Response: \(response)")
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                println("Error sending tweet: \(error)")
+                println("Error retweeting tweet: \(error)")
+        }
+    }
+    
+    func createFavorite(tweetId: String) {
+        var params: NSDictionary = ["id": tweetId]
+        println("TwitterClient/createFavorite - tweet id: \(tweetId)")
+        POST("1.1/favorites/create.json", parameters: params, success: { (operation:AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println("Favorited tweet successfully! Response: \(response)")
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error creating favorite: \(error)")
+        }
+    }
+    
+    func destroyFavorite(tweetId: String) {
+        var params: NSDictionary = ["id": tweetId]
+        println("TwitterClient/destroyFavorite - tweet id: \(tweetId)")
+        POST("1.1/favorites/destroy.json", parameters: params, success: { (operation:AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println("Unfavorited tweet successfully! Response: \(response)")
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error destroying favorite: \(error)")
         }
     }
     

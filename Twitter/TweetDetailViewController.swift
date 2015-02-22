@@ -12,6 +12,7 @@ class TweetDetailViewController: UIViewController {
     
     var tweet: Tweet!
     var favorited: Bool?
+    var tweetId: String!
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -28,6 +29,7 @@ class TweetDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.tweetId = self.tweet.tweetId
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reply", style: UIBarButtonItemStyle.Plain, target: self, action: "reply")
         self.title = "Tweet"
         println("tweet details - real name: \(self.tweet!.user!.name!)")
@@ -57,9 +59,8 @@ class TweetDetailViewController: UIViewController {
     
     func retweet() {
         println("retweet the tweet!")
-        var tweetId = tweet.tweetId!
-        println("TweetDetailViewController - tweet id: \(tweetId)")
-        TwitterClient.sharedInstance.retweet(tweetId)
+        println("TweetDetailViewController - tweet id: \(self.tweetId)")
+        TwitterClient.sharedInstance.retweet(self.tweetId)
     }
     
     func reply() {
@@ -73,12 +74,15 @@ class TweetDetailViewController: UIViewController {
     
     func favorite() {
         if self.favorited == true {
+            TwitterClient.sharedInstance.destroyFavorite(self.tweetId)
             self.favorited == false
             self.favoriteButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
             println("unfavorited the tweet!")
         } else {
+            TwitterClient.sharedInstance.createFavorite(self.tweetId)
             self.favorited == true
             self.favoriteButton.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
+            self.favoriteCountLabel.text = String(self.tweet!.favoriteCount! + 1)
             println("favorited the tweet!")
         }
     }
