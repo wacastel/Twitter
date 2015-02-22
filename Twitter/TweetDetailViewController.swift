@@ -12,7 +12,13 @@ class TweetDetailViewController: UIViewController {
     
     var tweet: Tweet!
     var favorited: Bool?
+    var retweeted: Bool?
     var tweetId: String!
+    let favoriteOffImage = UIImage(named: "favorite.png")
+    let favoriteOnImage = UIImage(named: "favorite_on.png")
+    let retweetOffImage = UIImage(named: "retweet.png")
+    let retweetOnImage = UIImage(named: "retweet_on.png")
+    let replyImage = UIImage(named: "reply.png")
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -47,12 +53,24 @@ class TweetDetailViewController: UIViewController {
         formatter.dateFormat = "MM/dd/yy, HH:mm a"
         self.timestampLabel.text = formatter.stringFromDate(self.tweet.createdAt!)
         
-        if self.tweet.favorited == 0 {
-            self.favoriteButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        println("favorited: \(self.tweet.favorited!)")
+        
+        // Set button images
+        self.replyButton.setImage(replyImage, forState: UIControlState.Normal)
+        if self.tweet.favorited! == 0 {
+            self.favoriteButton.setImage(favoriteOffImage, forState: UIControlState.Normal)
             self.favorited = false
         } else {
-            self.favoriteButton.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
+            self.favoriteButton.setImage(favoriteOnImage, forState: UIControlState.Normal)
             self.favorited = true
+        }
+        
+        if self.tweet.retweeted! == 0 {
+            self.retweetButton.setImage(retweetOffImage, forState: UIControlState.Normal)
+            self.retweeted = false
+        } else {
+            self.retweetButton.setImage(retweetOnImage, forState: UIControlState.Normal)
+            self.retweeted = true
         }
     }
 
@@ -62,9 +80,14 @@ class TweetDetailViewController: UIViewController {
     }
     
     func retweet() {
-        println("retweet the tweet!")
-        println("TweetDetailViewController - tweet id: \(self.tweetId)")
-        TwitterClient.sharedInstance.retweet(self.tweetId)
+        if self.retweeted! == false {
+            println("TweetDetailViewController - tweet id: \(self.tweetId)")
+            TwitterClient.sharedInstance.retweet(self.tweetId)
+            self.retweeted = true
+            self.retweetButton.setImage(retweetOnImage, forState: UIControlState.Normal)
+            self.retweetCountLabel.text = String(self.tweet.retweetCount! + 1)
+            println("retweeted the tweet!")
+        }
     }
     
     func reply() {
@@ -77,16 +100,17 @@ class TweetDetailViewController: UIViewController {
     }
     
     func favorite() {
-        if self.favorited == true {
+        if self.favorited! == true {
             TwitterClient.sharedInstance.destroyFavorite(self.tweetId)
-            self.favorited == false
-            self.favoriteButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+            self.favorited = false
+            self.favoriteButton.setImage(favoriteOffImage, forState: UIControlState.Normal)
+            self.favoriteCountLabel.text = String(self.tweet.favoriteCount! - 1)
             println("unfavorited the tweet!")
         } else {
             TwitterClient.sharedInstance.createFavorite(self.tweetId)
-            self.favorited == true
-            self.favoriteButton.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
-            self.favoriteCountLabel.text = String(self.tweet!.favoriteCount! + 1)
+            self.favorited = true
+            self.favoriteButton.setImage(favoriteOnImage, forState: UIControlState.Normal)
+            self.favoriteCountLabel.text = String(self.tweet.favoriteCount! + 1)
             println("favorited the tweet!")
         }
     }

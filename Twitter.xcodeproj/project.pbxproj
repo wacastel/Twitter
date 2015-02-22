@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E027FC11A9A8E220042E333 /* retweet_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E027FBC1A9A8E220042E333 /* retweet_on.png */; };
+		1E027FC21A9A8E220042E333 /* favorite_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E027FBD1A9A8E220042E333 /* favorite_on.png */; };
+		1E027FC31A9A8E220042E333 /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E027FBE1A9A8E220042E333 /* retweet.png */; };
+		1E027FC41A9A8E220042E333 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E027FBF1A9A8E220042E333 /* reply.png */; };
+		1E027FC51A9A8E220042E333 /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E027FC01A9A8E220042E333 /* favorite.png */; };
 		1E414CA61A97B5B800164FA5 /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E414CA41A97B5B800164FA5 /* TweetsViewController.swift */; };
 		1E414CA71A97B5B800164FA5 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1E414CA51A97B5B800164FA5 /* TweetsViewController.xib */; };
 		1E414CAB1A97B8D500164FA5 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E414CA91A97B8D500164FA5 /* TweetCell.swift */; };
@@ -38,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E027FBC1A9A8E220042E333 /* retweet_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet_on.png; sourceTree = "<group>"; };
+		1E027FBD1A9A8E220042E333 /* favorite_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite_on.png; sourceTree = "<group>"; };
+		1E027FBE1A9A8E220042E333 /* retweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet.png; sourceTree = "<group>"; };
+		1E027FBF1A9A8E220042E333 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
+		1E027FC01A9A8E220042E333 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
 		1E414CA41A97B5B800164FA5 /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		1E414CA51A97B5B800164FA5 /* TweetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
 		1E414CA91A97B8D500164FA5 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
@@ -84,6 +94,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E027FBB1A9A8D780042E333 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1E027FBC1A9A8E220042E333 /* retweet_on.png */,
+				1E027FBD1A9A8E220042E333 /* favorite_on.png */,
+				1E027FBE1A9A8E220042E333 /* retweet.png */,
+				1E027FBF1A9A8E220042E333 /* reply.png */,
+				1E027FC01A9A8E220042E333 /* favorite.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		1E414CA81A97B8B000164FA5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +148,7 @@
 				1E4874C71A95261C004B4080 /* Main.storyboard */,
 				1E4874CA1A95261C004B4080 /* Images.xcassets */,
 				1E4874CC1A95261C004B4080 /* LaunchScreen.xib */,
+				1E027FBB1A9A8D780042E333 /* Images */,
 				1E4874C11A95261C004B4080 /* Supporting Files */,
 				1E7166251A95317000A6C48A /* Twitter-Bridging-Header.h */,
 				1E414CAD1A98208D00164FA5 /* TweetDetailViewController.swift */,
@@ -278,10 +301,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E414CA71A97B5B800164FA5 /* TweetsViewController.xib in Resources */,
+				1E027FC21A9A8E220042E333 /* favorite_on.png in Resources */,
 				1E414CB01A98208D00164FA5 /* TweetDetailViewController.xib in Resources */,
+				1E027FC41A9A8E220042E333 /* reply.png in Resources */,
 				1E414CAC1A97B8D500164FA5 /* TweetCell.xib in Resources */,
 				1E4874C91A95261C004B4080 /* Main.storyboard in Resources */,
 				1E414CB41A985D9D00164FA5 /* ComposeViewController.xib in Resources */,
+				1E027FC51A9A8E220042E333 /* favorite.png in Resources */,
+				1E027FC31A9A8E220042E333 /* retweet.png in Resources */,
+				1E027FC11A9A8E220042E333 /* retweet_on.png in Resources */,
 				1E4874CE1A95261C004B4080 /* LaunchScreen.xib in Resources */,
 				1E4874CB1A95261C004B4080 /* Images.xcassets in Resources */,
 			);

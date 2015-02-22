@@ -36,11 +36,9 @@ class TweetCell: UITableViewCell {
             self.profileImageView.setImageWithURL(NSURL(string: profileImage))
         }
         self.userNameLabel.text = self.tweet.user!.name
-        self.screenNameLabel.text = self.tweet.user!.screenname
+        self.screenNameLabel.text = "@" + self.tweet.user!.screenname!
         var formatter = NSDateFormatter()
         var timeInterval = -(self.tweet.createdAt!.timeIntervalSinceNow)
-        println("timestamp: \(self.tweet.createdAt!)")
-        println("time interval since now: \(timeInterval)")
         if timeInterval < (24 * 60 * 60) {
             var hours = Int(round((timeInterval) / 3600))
             if hours < 1 {
