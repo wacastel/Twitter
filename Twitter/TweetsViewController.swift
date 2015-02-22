@@ -12,6 +12,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]?
+    var refreshControl: UIRefreshControl?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +22,26 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: UIBarButtonItemStyle.Plain, target: self, action: "logoutUser")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: UIBarButtonItemStyle.Plain, target: self, action: "composeTweet")
         self.title = "Home"
+        self.navigationItem.titleView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+        refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl!)
+        self.updateHomeTimeline()
+    }
+    
+    func updateHomeTimeline() {
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
             self.tableView.reloadData()
-            self.navigationItem.titleView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+            self.refreshControl?.endRefreshing()
+            println("...end refreshing")
         })
-        
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        println("refreshing...")
+        self.updateHomeTimeline()
     }
     
     override func didReceiveMemoryWarning() {
