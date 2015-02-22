@@ -14,8 +14,12 @@ class TweetDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("Tweet details: \(tweet!.user!.name)")
+        
         // Do any additional setup after loading the view.
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reply", style: UIBarButtonItemStyle.Plain, target: self, action: "reply")
+        self.title = "Tweet"
+        println("tweet details - real name: \(tweet!.user!.name)")
+        println("tweet details - screen name: \(tweet!.user!.screenname)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,6 +27,17 @@ class TweetDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func reply() {
+        println("reply to the tweet!")
+    }
+    
+    func retweet() {
+        println("retweet the tweet!")
+    }
+    
+    func favorite() {
+        println("favorite the tweet!")
+    }
 
     /*
     // MARK: - Navigation
@@ -33,5 +48,4 @@ class TweetDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

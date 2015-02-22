@@ -21,12 +21,12 @@ class ComposeViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Tweet", style: UIBarButtonItemStyle.Plain, target: self, action: "sendTweet")
         // Do any additional setup after loading the view.
         if let profileImage = self.user?.profileImageUrl {
-            //self.profileImageView.setImageWithURL(NSURL(string: profileImage))
+            self.profileImageView.setImageWithURL(NSURL(string: profileImage))
         }
         println("compose view - real name: \(self.user!.name)")
         println("compose view - screen name: \(self.user!.screenname)")
-        //self.realNameLabel.text = self.user!.name
-        //self.screenNameLabel.text = self.user!.screenname
+        self.realNameLabel.text = self.user!.name
+        self.screenNameLabel.text = self.user!.screenname
         composeTextView.becomeFirstResponder()
     }
 
