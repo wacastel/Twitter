@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="@TheMichaelMoran" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaG-EJ-lyo">
-                        <rect key="frame" x="142" y="8" width="93.5" height="12"/>
+                        <rect key="frame" x="142" y="8" width="93" height="12"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -50,16 +50,64 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-mU-YF4" userLabel="reply button">
+                        <rect key="frame" x="67" y="65" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="fH3-Hq-kYt"/>
+                            <constraint firstAttribute="height" constant="16" id="kjc-L4-9bw"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onReply:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4dk-J4-Ca0"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3oP-OO-DCz" userLabel="retweet button">
+                        <rect key="frame" x="112" y="65" width="19" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="Epd-at-BVx"/>
+                            <constraint firstAttribute="width" constant="19" id="u1U-Hx-Oad"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onRetweet:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4MK-NT-Py6"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddF-wb-oSm" userLabel="favorite button">
+                        <rect key="frame" x="160" y="65" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="ei2-kH-7kG"/>
+                            <constraint firstAttribute="height" constant="16" id="wfj-QQ-z4V"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kah-gg-D99"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="hVk-fV-llh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="46h-B2-oZO"/>
+                    <constraint firstItem="pXQ-mU-YF4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="59" id="7MI-Qg-K8x"/>
                     <constraint firstItem="ybM-tj-tsb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7Qg-dV-reV"/>
+                    <constraint firstItem="ddF-wb-oSm" firstAttribute="leading" secondItem="3oP-OO-DCz" secondAttribute="trailing" constant="29" id="95h-LY-CU7"/>
+                    <constraint firstItem="ddF-wb-oSm" firstAttribute="top" secondItem="Qlg-3y-ixK" secondAttribute="bottom" constant="4" id="DBu-PT-W1g"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="pXQ-mU-YF4" secondAttribute="bottom" constant="0.5" id="Gif-AB-2a4"/>
+                    <constraint firstItem="3oP-OO-DCz" firstAttribute="top" secondItem="Qlg-3y-ixK" secondAttribute="bottom" constant="4" id="Huz-H6-jGB"/>
                     <constraint firstItem="Qlg-3y-ixK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="LDn-6B-4Jt"/>
+                    <constraint firstItem="3oP-OO-DCz" firstAttribute="leading" secondItem="pXQ-mU-YF4" secondAttribute="trailing" constant="29" id="Oth-Nc-AHa"/>
                     <constraint firstItem="yZw-sU-xRP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Q2n-ac-3cv"/>
                     <constraint firstItem="kaG-EJ-lyo" firstAttribute="leading" secondItem="hVk-fV-llh" secondAttribute="trailing" constant="8" id="RPC-bF-xbo"/>
                     <constraint firstItem="kaG-EJ-lyo" firstAttribute="leading" secondItem="hVk-fV-llh" secondAttribute="trailing" constant="8" id="VYh-6g-xUl"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ddF-wb-oSm" secondAttribute="bottom" constant="0.5" id="Vsk-KA-c5v"/>
                     <constraint firstItem="ybM-tj-tsb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Zz3-ze-0es"/>
+                    <constraint firstItem="pXQ-mU-YF4" firstAttribute="top" secondItem="Qlg-3y-ixK" secondAttribute="bottom" constant="4" id="iPy-au-e0I"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Qlg-3y-ixK" secondAttribute="bottom" constant="20.5" id="kVY-qb-rcq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3oP-OO-DCz" secondAttribute="bottom" constant="0.5" id="l12-Cb-xJZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="yZw-sU-xRP" secondAttribute="trailing" constant="0.5" id="mYU-mz-QFh"/>
                     <constraint firstItem="kaG-EJ-lyo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="nMG-SI-IdU"/>
                     <constraint firstItem="Qlg-3y-ixK" firstAttribute="leading" secondItem="ybM-tj-tsb" secondAttribute="trailing" constant="8" id="q6e-Ny-R1r"/>
@@ -67,7 +115,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="favoriteButton" destination="ddF-wb-oSm" id="pbs-Eq-PXN"/>
                 <outlet property="profileImageView" destination="ybM-tj-tsb" id="9fE-5K-vTC"/>
+                <outlet property="replyButton" destination="pXQ-mU-YF4" id="9Kt-bn-SoZ"/>
+                <outlet property="retweetButton" destination="3oP-OO-DCz" id="OVF-GV-DLZ"/>
                 <outlet property="screenNameLabel" destination="kaG-EJ-lyo" id="Nbo-g3-qbr"/>
                 <outlet property="timeStampLabel" destination="yZw-sU-xRP" id="la4-lr-Fj9"/>
                 <outlet property="tweetTextLabel" destination="Qlg-3y-ixK" id="WXd-nL-AwZ"/>

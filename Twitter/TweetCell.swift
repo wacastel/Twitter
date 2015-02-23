@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol TweetCellDelegate {
+    func didReplyToTweet(cell: TweetCell)
+    func didRetweetTweet(cell: TweetCell)
+    func didFavoriteTweet(cell: TweetCell)
+}
+
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -15,8 +21,19 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     var tweet: Tweet!
+    var delegate: TweetCellDelegate?
+    var retweeted: Bool!
+    var favorited: Bool!
+    let favoriteOffImage = UIImage(named: "favorite.png")
+    let favoriteOnImage = UIImage(named: "favorite_on.png")
+    let retweetOffImage = UIImage(named: "retweet.png")
+    let retweetOnImage = UIImage(named: "retweet_on.png")
+    let replyImage = UIImage(named: "reply.png")
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,6 +68,24 @@ class TweetCell: UITableViewCell {
             self.timeStampLabel.text = formatter.stringFromDate(self.tweet.createdAt!)
         }
         self.tweetTextLabel.text = self.tweet.text
+        
+        // Set button images
+        self.replyButton.setImage(replyImage, forState: UIControlState.Normal)
+        if self.tweet.favorited! == 0 {
+            self.favoriteButton.setImage(favoriteOffImage, forState: UIControlState.Normal)
+            self.favorited = false
+        } else {
+            self.favoriteButton.setImage(favoriteOnImage, forState: UIControlState.Normal)
+            self.favorited = true
+        }
+        
+        if self.tweet.retweeted! == 0 {
+            self.retweetButton.setImage(retweetOffImage, forState: UIControlState.Normal)
+            self.retweeted = false
+        } else {
+            self.retweetButton.setImage(retweetOnImage, forState: UIControlState.Normal)
+            self.retweeted = true
+        }
     }
     
     override func layoutSubviews() {
@@ -58,4 +93,18 @@ class TweetCell: UITableViewCell {
         self.tweetTextLabel.preferredMaxLayoutWidth = self.tweetTextLabel.frame.size.width
     }
     
+    @IBAction func onReply(sender: AnyObject) {
+        self.delegate?.didReplyToTweet(self)
+    }
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        self.delegate?.didRetweetTweet(self)
+    }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        self.delegate?.didFavoriteTweet(self)
+    }
+    @IBAction func onTestButton(sender: AnyObject) {
+        println("test button clicked!")
+    }
 }

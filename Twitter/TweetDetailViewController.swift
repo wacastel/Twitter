@@ -57,6 +57,7 @@ class TweetDetailViewController: UIViewController {
         
         // Set button images
         self.replyButton.setImage(replyImage, forState: UIControlState.Normal)
+        self.replyButton.setBackgroundImage(replyImage, forState: UIControlState.Normal)
         if self.tweet.favorited! == 0 {
             self.favoriteButton.setImage(favoriteOffImage, forState: UIControlState.Normal)
             self.favorited = false

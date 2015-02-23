@@ -8,11 +8,16 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]?
     var refreshControl: UIRefreshControl?
+    let favoriteOffImage = UIImage(named: "favorite.png")
+    let favoriteOnImage = UIImage(named: "favorite_on.png")
+    let retweetOffImage = UIImage(named: "retweet.png")
+    let retweetOnImage = UIImage(named: "retweet_on.png")
+    let replyImage = UIImage(named: "reply.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +71,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:TweetCell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as TweetCell
         cell.setTweet(self.tweets![indexPath.row] as Tweet)
+        cell.delegate = self
         return cell
     }
     
@@ -85,6 +91,43 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         vc.user = User.currentUser
         vc.replyMode = false
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didReplyToTweet(cell: TweetCell) {
+        println("delegate responding to reply action!")
+        let vc = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
+        vc.user = User.currentUser
+        vc.tweet = cell.tweet
+        vc.replyMode = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didRetweetTweet(cell: TweetCell) {
+        println("delegate - retweet tweet!")
+        if cell.retweeted == false {
+            cell.retweeted = true
+            println("TweetsViewController - tweet id: \(cell.tweet.tweetId)")
+            TwitterClient.sharedInstance.retweet(cell.tweet.tweetId!)
+            cell.retweetButton.setImage(retweetOnImage, forState: UIControlState.Normal)
+            println("retweeted the tweet!")
+        } else {
+            println("preventing another retweet because you already retweeted this tweet!")
+        }
+    }
+    
+    func didFavoriteTweet(cell: TweetCell) {
+        println("delegate - favorite tweet!")
+        if cell.favorited! == true {
+            TwitterClient.sharedInstance.destroyFavorite(cell.tweet.tweetId!)
+            cell.favorited = false
+            cell.favoriteButton.setImage(favoriteOffImage, forState: UIControlState.Normal)
+            println("unfavorited the tweet!")
+        } else {
+            TwitterClient.sharedInstance.createFavorite(cell.tweet.tweetId!)
+            cell.favorited = true
+            cell.favoriteButton.setImage(favoriteOnImage, forState: UIControlState.Normal)
+            println("favorited the tweet!")
+        }
     }
     
     /*
