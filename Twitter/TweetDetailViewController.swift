@@ -87,6 +87,8 @@ class TweetDetailViewController: UIViewController {
             self.retweetButton.setImage(retweetOnImage, forState: UIControlState.Normal)
             self.retweetCountLabel.text = String(self.tweet.retweetCount! + 1)
             println("retweeted the tweet!")
+        } else {
+            println("preventing another retweet because you already retweeted this tweet!")
         }
     }
     
