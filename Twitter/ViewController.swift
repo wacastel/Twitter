@@ -26,7 +26,8 @@ class ViewController: UIViewController {
             if user != nil {
                 // perform segue
                 //self.performSegueWithIdentifier("loginSegue", sender: self)
-                let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
+                //let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
+                let vc = ParentViewController(nibName: "ParentViewController", bundle: nil)
                 let nvc = UINavigationController(rootViewController: vc)
                 self.presentViewController(nvc, animated: true, completion: nil)
             } else {

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController" customModule="Twitter" customModuleProvider="target">
+            <connections>
+                <outlet property="homeTimelineBtn" destination="3xA-54-4RI" id="Mjg-Lq-q4t"/>
+                <outlet property="logoutButton" destination="VjV-X5-WH2" id="j6I-ht-Bgb"/>
+                <outlet property="mentionsBtn" destination="QPV-Da-pEB" id="7dj-Cp-GjI"/>
+                <outlet property="profileBtn" destination="oxw-Bq-S5w" id="dU2-hw-aQ2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyB-Gk-TCF">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxw-Bq-S5w">
+                            <rect key="frame" x="8" y="87" width="276" height="49"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="aG7-Qv-Yo0"/>
+                                <constraint firstAttribute="width" constant="276" id="zwy-tl-ehr"/>
+                            </constraints>
+                            <state key="normal" title="Profile">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onProfileBtn:" destination="-1" eventType="touchUpInside" id="tzj-gb-spB"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xA-54-4RI">
+                            <rect key="frame" x="8" y="162" width="276" height="49"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="276" id="dud-3E-4Pp"/>
+                                <constraint firstAttribute="height" constant="49" id="fte-ql-Orc"/>
+                            </constraints>
+                            <state key="normal" title="Home Timeline">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onHomeTimelineBtn:" destination="-1" eventType="touchUpInside" id="yBB-O8-foj"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPV-Da-pEB">
+                            <rect key="frame" x="8" y="236" width="276" height="49"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="1fx-AL-aUu"/>
+                                <constraint firstAttribute="width" constant="276" id="3h4-XY-zjD"/>
+                            </constraints>
+                            <state key="normal" title="Mentions">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onMentionBtn:" destination="-1" eventType="touchUpInside" id="0oy-zz-CRg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjV-X5-WH2">
+                            <rect key="frame" x="8" y="310" width="276" height="49"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="34h-Wc-Cso"/>
+                                <constraint firstAttribute="width" constant="276" id="kwJ-Qd-X3L"/>
+                            </constraints>
+                            <state key="normal" title="Sign Out">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onLogoutBtn:" destination="-1" eventType="touchUpInside" id="fwP-oV-0lB"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="oxw-Bq-S5w" firstAttribute="top" secondItem="FyB-Gk-TCF" secondAttribute="top" constant="87" id="1YD-e5-jd9"/>
+                        <constraint firstItem="3xA-54-4RI" firstAttribute="leading" secondItem="FyB-Gk-TCF" secondAttribute="leading" constant="8" id="5lX-Qd-sPc"/>
+                        <constraint firstItem="3xA-54-4RI" firstAttribute="top" secondItem="oxw-Bq-S5w" secondAttribute="bottom" constant="26" id="6Hi-7K-KbE"/>
+                        <constraint firstItem="QPV-Da-pEB" firstAttribute="leading" secondItem="FyB-Gk-TCF" secondAttribute="leading" constant="8" id="TFG-OV-yJo"/>
+                        <constraint firstItem="QPV-Da-pEB" firstAttribute="top" secondItem="3xA-54-4RI" secondAttribute="bottom" constant="25" id="aNz-vR-C57"/>
+                        <constraint firstItem="oxw-Bq-S5w" firstAttribute="leading" secondItem="FyB-Gk-TCF" secondAttribute="leading" constant="8" id="h2S-6f-Q5r"/>
+                        <constraint firstItem="VjV-X5-WH2" firstAttribute="leading" secondItem="FyB-Gk-TCF" secondAttribute="leading" constant="8" id="nKV-DG-zGz"/>
+                        <constraint firstItem="VjV-X5-WH2" firstAttribute="top" secondItem="QPV-Da-pEB" secondAttribute="bottom" constant="25" id="tCa-3n-pqn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="FyB-Gk-TCF" secondAttribute="bottom" id="7SC-rN-RLd"/>
+                <constraint firstItem="FyB-Gk-TCF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GDb-d7-h7x"/>
+                <constraint firstItem="FyB-Gk-TCF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KZI-k8-wSb"/>
+                <constraint firstAttribute="trailing" secondItem="FyB-Gk-TCF" secondAttribute="trailing" id="WUx-B2-Z1N"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

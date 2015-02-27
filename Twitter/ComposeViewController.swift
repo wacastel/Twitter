@@ -56,7 +56,8 @@ class ComposeViewController: UIViewController {
             vc.tweet = self.tweet!
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
+            //let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
+            let vc = ParentViewController(nibName: "ParentViewController", bundle: nil)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

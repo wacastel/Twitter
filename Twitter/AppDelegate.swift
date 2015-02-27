@@ -23,9 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Go to the logged in screen
             println("Current user detected: \(User.currentUser!.name!)")
             //var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
-            let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
+            //let vc = TweetsViewController(nibName: "TweetsViewController", bundle: nil)
+            let vc = ParentViewController(nibName: "ParentViewController", bundle: nil)
             let nvc = UINavigationController(rootViewController: vc)
             window?.rootViewController = nvc
+            //window?.rootViewController = vc
         }
         
         return true
