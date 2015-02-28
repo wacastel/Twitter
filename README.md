@@ -17,4 +17,4 @@ Time spent: 15 hours
 
 ### Walkthrough
 
-![Video Walkthrough](https://raw.githubusercontent.com/wacastel/Twitter/master/twitter-client-hw-4.gif)
+![Video Walkthrough](https://raw.githubusercontent.com/wacastel/Twitter/master/twitter-redux-hw-4.gif)
