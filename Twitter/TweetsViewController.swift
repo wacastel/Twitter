@@ -145,8 +145,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func didTapOnProfileImage(cell: TweetCell) {
         println("delegate responding to tap on image action!")
         let vc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-        vc.user = User.currentUser
-        vc.tweet = cell.tweet
+        vc.user = cell.tweet.user
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

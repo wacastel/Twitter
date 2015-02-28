@@ -100,6 +100,7 @@ class ParentViewController: UIViewController, MenuViewDelegate {
         println("ParentViewController - didSelectProfileBtn")
         toggleMenu()
         let vc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        vc.user = User.currentUser
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

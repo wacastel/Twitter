@@ -11,13 +11,25 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     var user: User?
-    var tweet: Tweet?
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var userRealName: UILabel!
+    @IBOutlet weak var userScreenName: UILabel!
+    @IBOutlet weak var tweetsCount: UILabel!
+    @IBOutlet weak var followingCount: UILabel!
+    @IBOutlet weak var followersCount: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         println("ProfileViewController - viewDidLoad")
+        if let profileImage = self.user?.profileImageUrl {
+            self.profileImageView.setImageWithURL(NSURL(string: profileImage))
+        }
+        self.userRealName.text = self.user!.name!
+        self.userScreenName.text = self.user!.screenname!
+        self.tweetsCount.text = String(self.user!.tweetsCount!) + " TWEETS"
+        self.followingCount.text = String(self.user!.followingCount!) + " FOLLOWING"
+        self.followersCount.text = String(self.user!.followersCount!) + " FOLLOWERS"
     }
 
     override func didReceiveMemoryWarning() {
