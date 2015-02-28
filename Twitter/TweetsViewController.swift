@@ -17,6 +17,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]?
     var refreshControl: UIRefreshControl?
+    var inMentionsView: Bool?
     let favoriteOffImage = UIImage(named: "favorite.png")
     let favoriteOnImage = UIImage(named: "favorite_on.png")
     let retweetOffImage = UIImage(named: "retweet.png")
@@ -33,30 +34,34 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 90
         
-        //self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: UIBarButtonItemStyle.Plain, target: self, action: "logoutUser")
-        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: UIBarButtonItemStyle.Plain, target: self, action: "composeTweet")
-        //self.title = "Home"
-        //self.navigationItem.titleView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        
         refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl!)
-        self.updateHomeTimeline()
+        self.updateTimeline()
     }
     
-    func updateHomeTimeline() {
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
-            self.tweets = tweets
-            self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-            println("...end refreshing")
-        })
+    func updateTimeline() {
+        if inMentionsView == true {
+            TwitterClient.sharedInstance.mentionsTimelineWithParams(nil, completion: { (tweets, error) -> () in
+                self.tweets = tweets
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+                println("...end refreshing")
+            })
+        } else {
+            TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
+                self.tweets = tweets
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+                println("...end refreshing")
+            })
+        }
     }
     
     func refresh(sender:AnyObject)
     {
         println("refreshing...")
-        self.updateHomeTimeline()
+        self.updateTimeline()
     }
     
     override func didReceiveMemoryWarning() {

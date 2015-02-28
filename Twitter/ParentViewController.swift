@@ -105,14 +105,18 @@ class ParentViewController: UIViewController, MenuViewDelegate {
     
     func didSelectHomeTimelineBtn() {
         println("ParentViewController - didSelectHomeTimelineBtn")
+        self.tweetsViewController?.inMentionsView = false
+        self.title = "Home"
+        self.tweetsViewController?.updateTimeline()
         toggleMenu()
     }
     
     func didSelectMentionBtn() {
         println("ParentViewController - didSelectMentionBtn")
+        self.tweetsViewController?.inMentionsView = true
+        self.title = "Mentions"
+        self.tweetsViewController?.updateTimeline()
         toggleMenu()
-        let vc = MentionsViewController(nibName: "MentionsViewController", bundle: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 
