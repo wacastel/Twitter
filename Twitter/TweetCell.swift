@@ -14,6 +14,10 @@ protocol TweetCellDelegate {
     func didFavoriteTweet(cell: TweetCell)
 }
 
+protocol TweetCellProfileDelegate {
+    func didTapOnProfileImage(cell: TweetCell)
+}
+
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -27,6 +31,7 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet!
     var delegate: TweetCellDelegate?
+    var tapDelegate: TweetCellProfileDelegate?
     var retweeted: Bool!
     var favorited: Bool!
     let favoriteOffImage = UIImage(named: "favorite.png")
@@ -34,12 +39,15 @@ class TweetCell: UITableViewCell {
     let retweetOffImage = UIImage(named: "retweet.png")
     let retweetOnImage = UIImage(named: "retweet_on.png")
     let replyImage = UIImage(named: "reply.png")
+    var tapGestureRecognizer: UITapGestureRecognizer?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.tweetTextLabel.preferredMaxLayoutWidth = self.tweetTextLabel.frame.size.width
         self.selectionStyle = UITableViewCellSelectionStyle.None
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onTap:")
+        self.profileImageView.addGestureRecognizer(tapGestureRecognizer!)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -88,6 +96,11 @@ class TweetCell: UITableViewCell {
         }
     }
     
+    func onTap(tapGestureRecognizer: UITapGestureRecognizer) {
+        println("tapped the image in cell!")
+        self.tapDelegate?.didTapOnProfileImage(self)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.tweetTextLabel.preferredMaxLayoutWidth = self.tweetTextLabel.frame.size.width
@@ -103,8 +116,5 @@ class TweetCell: UITableViewCell {
     
     @IBAction func onFavorite(sender: AnyObject) {
         self.delegate?.didFavoriteTweet(self)
-    }
-    @IBAction func onTestButton(sender: AnyObject) {
-        println("test button clicked!")
     }
 }

@@ -12,7 +12,7 @@ protocol TweetsViewControllerDelegate: class {
     func toggleMenu()
 }
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate, TweetCellProfileDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]?
@@ -78,6 +78,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         var cell:TweetCell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as TweetCell
         cell.setTweet(self.tweets![indexPath.row] as Tweet)
         cell.delegate = self
+        cell.tapDelegate = self
         return cell
     }
     
@@ -134,6 +135,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             cell.favoriteButton.setImage(favoriteOnImage, forState: UIControlState.Normal)
             println("favorited the tweet!")
         }
+    }
+    
+    func didTapOnProfileImage(cell: TweetCell) {
+        println("delegate responding to tap on image action!")
+        let vc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        vc.user = User.currentUser
+        vc.tweet = cell.tweet
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     /*

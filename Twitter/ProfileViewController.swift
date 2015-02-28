@@ -9,6 +9,9 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    var user: User?
+    var tweet: Tweet?
 
     override func viewDidLoad() {
         super.viewDidLoad()
