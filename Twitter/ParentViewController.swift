@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ParentViewController: UIViewController {
+class ParentViewController: UIViewController, MenuViewDelegate {
     
     var tweetsViewController: TweetsViewController?
     var menuViewController: MenuViewController?
@@ -29,7 +29,6 @@ class ParentViewController: UIViewController {
         self.navigationItem.titleView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "onCustomPan:")
         addTweetsView()
-        //self.menuFrame = self.view.frame
     }
     
     func addTweetsView() {
@@ -43,6 +42,7 @@ class ParentViewController: UIViewController {
     func toggleMenu() {
         if (menuViewController == nil) {
             menuViewController = MenuViewController(nibName: "MenuViewController", bundle: nil)
+            menuViewController?.delegate = self
             self.view.insertSubview(menuViewController!.view, atIndex: 0)
             self.addChildViewController(menuViewController!)
             menuViewController?.didMoveToParentViewController(self)
@@ -69,7 +69,6 @@ class ParentViewController: UIViewController {
             println("Gesture began at: \(point)")
             trayOriginalCenter = self.tweetsViewController!.view.center
             startX = point.x
-            //self.menuFrame = tweetsViewController!.view.frame
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
             println("Gesture changed at: \(point)")
             self.tweetsViewController!.view.center = CGPoint(x: trayOriginalCenter.x + point.x - startX, y: trayOriginalCenter.y)
@@ -95,6 +94,25 @@ class ParentViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func didSelectProfileBtn() {
+        println("ParentViewController - didSelectProfileBtn")
+        toggleMenu()
+        let vc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didSelectHomeTimelineBtn() {
+        println("ParentViewController - didSelectHomeTimelineBtn")
+        toggleMenu()
+    }
+    
+    func didSelectMentionBtn() {
+        println("ParentViewController - didSelectMentionBtn")
+        toggleMenu()
+        let vc = MentionsViewController(nibName: "MentionsViewController", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 

@@ -8,12 +8,19 @@
 
 import UIKit
 
+protocol MenuViewDelegate {
+    func didSelectProfileBtn()
+    func didSelectHomeTimelineBtn()
+    func didSelectMentionBtn()
+}
+
 class MenuViewController: UIViewController {
 
     @IBOutlet weak var profileBtn: UIButton!
     @IBOutlet weak var homeTimelineBtn: UIButton!
     @IBOutlet weak var mentionsBtn: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
+    var delegate: MenuViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +36,17 @@ class MenuViewController: UIViewController {
     
     @IBAction func onProfileBtn(sender: UIButton) {
         println("go to my profile!")
+        self.delegate?.didSelectProfileBtn()
     }
 
     @IBAction func onHomeTimelineBtn(sender: UIButton) {
         println("go to home timeline view!")
+        self.delegate?.didSelectHomeTimelineBtn()
     }
     
     @IBAction func onMentionBtn(sender: UIButton) {
         println("go to mentions view!")
+        self.delegate?.didSelectMentionBtn()
     }
     
     @IBAction func onLogoutBtn(sender: UIButton) {

@@ -36,7 +36,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xA-54-4RI">
-                            <rect key="frame" x="8" y="162" width="276" height="49"/>
+                            <rect key="frame" x="8" y="233" width="276" height="49"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="276" id="dud-3E-4Pp"/>
@@ -50,7 +50,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPV-Da-pEB">
-                            <rect key="frame" x="8" y="236" width="276" height="49"/>
+                            <rect key="frame" x="8" y="161" width="276" height="49"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="1fx-AL-aUu"/>
@@ -64,7 +64,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjV-X5-WH2">
-                            <rect key="frame" x="8" y="310" width="276" height="49"/>
+                            <rect key="frame" x="8" y="308" width="276" height="49"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="34h-Wc-Cso"/>
@@ -82,12 +82,12 @@
                     <constraints>
                         <constraint firstItem="oxw-Bq-S5w" firstAttribute="top" secondItem="FyB-Gk-TCF" secondAttribute="top" constant="87" id="1YD-e5-jd9"/>
                         <constraint firstItem="3xA-54-4RI" firstAttribute="leading" secondItem="FyB-Gk-TCF" secondAttribute="leading" constant="8" id="5lX-Qd-sPc"/>
-                        <constraint firstItem="3xA-54-4RI" firstAttribute="top" secondItem="oxw-Bq-S5w" secondAttribute="bottom" constant="26" id="6Hi-7K-KbE"/>
+                        <constraint firstItem="3xA-54-4RI" firstAttribute="top" secondItem="oxw-Bq-S5w" secondAttribute="bottom" constant="97" id="6Hi-7K-KbE"/>
                         <constraint firstItem="QPV-Da-pEB" firstAttribute="leading" secondItem="FyB-Gk-TCF" secondAttribute="leading" constant="8" id="TFG-OV-yJo"/>
-                        <constraint firstItem="QPV-Da-pEB" firstAttribute="top" secondItem="3xA-54-4RI" secondAttribute="bottom" constant="25" id="aNz-vR-C57"/>
+                        <constraint firstItem="QPV-Da-pEB" firstAttribute="top" secondItem="3xA-54-4RI" secondAttribute="bottom" constant="-121" id="aNz-vR-C57"/>
                         <constraint firstItem="oxw-Bq-S5w" firstAttribute="leading" secondItem="FyB-Gk-TCF" secondAttribute="leading" constant="8" id="h2S-6f-Q5r"/>
                         <constraint firstItem="VjV-X5-WH2" firstAttribute="leading" secondItem="FyB-Gk-TCF" secondAttribute="leading" constant="8" id="nKV-DG-zGz"/>
-                        <constraint firstItem="VjV-X5-WH2" firstAttribute="top" secondItem="QPV-Da-pEB" secondAttribute="bottom" constant="25" id="tCa-3n-pqn"/>
+                        <constraint firstItem="VjV-X5-WH2" firstAttribute="top" secondItem="QPV-Da-pEB" secondAttribute="bottom" constant="98" id="tCa-3n-pqn"/>
                     </constraints>
                 </view>
             </subviews>
